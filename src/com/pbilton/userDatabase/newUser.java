@@ -4,21 +4,19 @@ import java.util.Scanner;
 
 public class newUser {
     private static Scanner scanner = new Scanner(System.in);
-    private final int userID;
     private String userName;
     private String userEmail;
     private String userCompany;
 
 
-    public newUser(int i) {
-        this.userID = i++;
+    public newUser() {
         this.userName = getUserInput("username");
         this.userEmail = getUserInput("email");
         this.userCompany = getUserInput("company");
+
     }
 
-
-    public String getUserInput(String prompt) {
+    private String getUserInput(String prompt) {
         System.out.print("Please enter your " + prompt + ":");
         String value = scanner.next();
         return value;
@@ -34,5 +32,5 @@ public class newUser {
         return this.userCompany;
     }
 
-    public int getUserID(){ return userID;}
 }
+

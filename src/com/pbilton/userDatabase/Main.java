@@ -1,31 +1,27 @@
 package com.pbilton.userDatabase;
 
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
-        int userId = 001;
+        ArrayList<String> customerName = new ArrayList<>();
+        ArrayList<String> customerEmail = new ArrayList<>();
+        ArrayList<String> customerCompany = new ArrayList<>();
 
-        newUser user1 = new newUser(userId++);
-        newUser user2 = new newUser(userId++);
+        newUser user1 = new newUser();
+        customerName.add(user1.getUserName());
+        customerEmail.add(user1.getUserEmail());
+        customerCompany.add(user1.getUserCompany());
 
-        printFile(user1.getUserName(),user1.getUserEmail(),user1.getUserCompany(),user1.getUserID());
-        printFileTwo(user2.getUserName(),user2.getUserEmail(),user2.getUserCompany(),user2.getUserID());
+        newUser user2 = new newUser();
+        customerName.add(user2.getUserName());
+        customerEmail.add(user2.getUserEmail());
+        customerCompany.add(user2.getUserCompany());
+
+        System.out.println(customerName.get(0) +" " + customerEmail.get(0) + " " + customerCompany.get(0));
+        System.out.println(customerName.get(1) +" " + customerEmail.get(0) + " " + customerCompany.get(1));
     }
-
-    public static void printFile(String name,String email, String company, int ID) {
-        System.out.println("Customer ID: " + ID);
-        System.out.println("Customer Name: " + name);
-        System.out.println("Customer Email: " + email);
-        System.out.println("Customer Company: " + company);
-    }
-
-    public static void printFileTwo(String name,String email, String company, int ID) {
-        System.out.println("Customer ID: " + ID);
-        System.out.println("Customer Name: " + name);
-        System.out.println("Customer Email: " + email);
-        System.out.println("Customer Company: " + company);
-    }
-
 }
 
 
