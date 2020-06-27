@@ -1,26 +1,26 @@
 package com.pbilton.userDatabase;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Main {
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        ArrayList<String> customerName = new ArrayList<>();
-        ArrayList<String> customerEmail = new ArrayList<>();
-        ArrayList<String> customerCompany = new ArrayList<>();
 
-        newUser user1 = new newUser();
-        customerName.add(user1.getUserName());
-        customerEmail.add(user1.getUserEmail());
-        customerCompany.add(user1.getUserCompany());
+        ArrayList<user> users = new ArrayList<>();
 
-        newUser user2 = new newUser();
-        customerName.add(user2.getUserName());
-        customerEmail.add(user2.getUserEmail());
-        customerCompany.add(user2.getUserCompany());
+        users.add(user.create(getInput("User Name"), getInput("Email"), getInput("Company")));
+        users.add(user.create(getInput("User Name"), getInput("Email"), getInput("Company")));
 
-        System.out.println(customerName.get(0) +" " + customerEmail.get(0) + " " + customerCompany.get(0));
-        System.out.println(customerName.get(1) +" " + customerEmail.get(0) + " " + customerCompany.get(1));
+        System.out.println(users.get(0).print());
+        System.out.println(users.get(1).print());
+    }
+
+    private static String getInput(String prompt) {
+        System.out.print("Please enter your " + prompt + ":");
+        String value = scanner.next();
+        return value;
     }
 }
 
