@@ -2,7 +2,7 @@ package com.pbilton.userDatabase;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-
+//Want to add a user menu to add new user, search user and delete user
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
@@ -35,7 +35,7 @@ public class Main {
         }
     }
 
-    private static int displayMenu() {
+  private static int displayMenu() {
         System.out.println("1: Add customer");
         System.out.println("2: View customer");
         System.out.println("3: Delete customer");
@@ -51,6 +51,5 @@ public class Main {
         return value;
     }
 }
-
 
 

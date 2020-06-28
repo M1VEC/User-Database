@@ -21,7 +21,6 @@ public class customer {
         this.email = email;
         this.company = company;
     }
-
     public static void addCustomer(ArrayList<customer> users){
         users.add(create(getInput("User Name"), getInput("Email"), getInput("Company")));
     }
@@ -35,7 +34,7 @@ public class customer {
     public String print() {
         return "Customer ID: " + id + ", Name: " + name + ", Email: " + email + ", Company: " + company;
     }
-
+  
     public static void preCustomerList(ArrayList<customer> customer){
         customer.add(create("humpty","humpty@dumpty.com","The wall company"));
         customer.add(create("gg","gg@horsey.com","The stables"));
