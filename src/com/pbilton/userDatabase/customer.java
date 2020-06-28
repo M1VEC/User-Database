@@ -21,15 +21,8 @@ public class customer {
         this.email = email;
         this.company = company;
     }
-
-    public static void addCustomerList(ArrayList<customer> customer){
-        customer.add(create("jack","jackie@hotmail.co.uk","BT"));
-        customer.add(create("gg","aHorse@horse.com","Stables"));
-        customer.add(create("bob","bobby@gmail.com","ScotlandYard"));
-    }
-
-    public static void addCustomer(ArrayList<customer> customer){
-        customer.add(create(getInput("User Name"), getInput("Email"), getInput("Company")));
+    public static void addCustomer(ArrayList<customer> users){
+        users.add(create(getInput("User Name"), getInput("Email"), getInput("Company")));
     }
 
     public static String getInput(String prompt) {
@@ -40,6 +33,12 @@ public class customer {
 
     public String print() {
         return "Customer ID: " + id + ", Name: " + name + ", Email: " + email + ", Company: " + company;
+    }
+  
+    public static void preCustomerList(ArrayList<customer> customer){
+        customer.add(create("humpty","humpty@dumpty.com","The wall company"));
+        customer.add(create("gg","gg@horsey.com","The stables"));
+        customer.add(create("bobby","bobby@police.com","ScotlandYard"));
     }
 }
 
