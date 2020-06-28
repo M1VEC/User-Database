@@ -3,32 +3,30 @@ package com.pbilton.userDatabase;
 import java.util.ArrayList;
 import java.util.Scanner;
 //Want to add a user menu to add new user, search user and delete user
-//add a test file that adds 10 users
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        ArrayList<user> users = new ArrayList<>();
-        String additionalUser = " ";
-            while (!additionalUser.equals("n")) {
-                addUser(users);
-                System.out.println("Add another user: y or n");
-                additionalUser = scanner.next().toLowerCase();
-            }
+        ArrayList<customer> customer = new ArrayList<>();
+        com.pbilton.userDatabase.customer.addCustomerList(customer); //Calls a method to fill array with a small list of customer 0,1,2
 
-        System.out.println(users.get(0).print());
-    }
-    private static void addUser(ArrayList<user> users){
-        users.add(user.create(getInput("User Name"), getInput("Email"), getInput("Company")));
+        String additionalCustomer = " ";
+        while (!additionalCustomer.equals("n")) {
+            com.pbilton.userDatabase.customer.addCustomer(customer);
+            System.out.println("Add another customer: y or n");
+            additionalCustomer = scanner.next().toLowerCase();
+        }
+
+        int userIndex = displayIndex();
+        System.out.println(customer.get(userIndex).print());
     }
 
-    private static String getInput(String prompt) {
-        System.out.print("Please enter your " + prompt + ":");
-        String value = scanner.next();
+    public static int displayIndex() {
+        System.out.println("Select customer to view:");
+        int value = scanner.nextInt() - 1;
         return value;
     }
 }
-
 
 
