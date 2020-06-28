@@ -21,10 +21,12 @@ public class Main {
                     customer.addCustomer(customers);
                     System.out.println("Add another user: y or n");
                     additionalCustomer = scanner.next().toLowerCase();
+                    System.out.println();
                 }
             }
             else if (menuSelection == 2) {
                 System.out.println(customers.get(displayIndex()).print());
+                System.out.println();
             }
             else if (menuSelection == 3) {
                 System.out.println("Delete User");
@@ -42,6 +44,7 @@ public class Main {
         System.out.println("4: Exit");
         System.out.println("Selection:");
         int value = scanner.nextInt();
+        System.out.println();
         return value;
     }
 
