@@ -2,6 +2,7 @@ package com.pbilton.userDatabase;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+//Program to create a customer database
 //Want to add a user menu to add new user, search user and delete user
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
@@ -13,45 +14,29 @@ public class Main {
         customer.preCustomerList(customers);    //adds 3 pre-typed customers to the list
 
         while (!(menuSelection == 4)) {
-            menuSelection = displayMenu();
+            menuSelection = userInterface.displayMenu();
 
             if (menuSelection == 1) {
+
                 String additionalCustomer = " ";
                 while (!additionalCustomer.equals("n")) {
+
                     customer.addCustomer(customers);
-                    System.out.println("Add another user: y or n");
+                    System.out.println("Add another customer: y or n");
+
                     additionalCustomer = scanner.next().toLowerCase();
                     System.out.println();
                 }
             }
-            else if (menuSelection == 2) {
-                System.out.println(customers.get(displayIndex()).print());
-                System.out.println();
-            }
-            else if (menuSelection == 3) {
+            else if (menuSelection == 2)
+                userInterface.printCustomer(customers);
+
+            else if (menuSelection == 3)
                 System.out.println("Delete User");
-            }
-            else if (menuSelection == 4) {
+
+            else if (menuSelection == 4)
          break;
-            }
         }
-    }
-
-  private static int displayMenu() {
-        System.out.println("1: Add customer");
-        System.out.println("2: View customer");
-        System.out.println("3: Delete customer");
-        System.out.println("4: Exit");
-        System.out.println("Selection:");
-        int value = scanner.nextInt();
-        System.out.println();
-        return value;
-    }
-
-    private static int displayIndex() {
-        System.out.println("Select customer to view:");
-        int value = scanner.nextInt()-1;
-        return value;
     }
 }
 

@@ -21,11 +21,11 @@ public class customer {
         this.email = email;
         this.company = company;
     }
-    public static void addCustomer(ArrayList<customer> users){
-        users.add(create(getInput("User Name"), getInput("Email"), getInput("Company")));
+    public static void addCustomer(ArrayList<customer> customers){
+        customers.add(create(getInput("User Name"), getInput("Email"), getInput("Company")));
     }
 
-    public static String getInput(String prompt) {
+    private static String getInput(String prompt) {
         System.out.print("Please enter your " + prompt + ":");
         String value = scanner.next();
         return value;
@@ -34,7 +34,8 @@ public class customer {
     public String print() {
         return "Customer ID: " + id + ", Name: " + name + ", Email: " + email + ", Company: " + company;
     }
-  
+
+    //Used to pre-populate array with customers
     public static void preCustomerList(ArrayList<customer> customer){
         customer.add(create("humpty","humpty@dumpty.com","The wall company"));
         customer.add(create("gg","gg@horsey.com","The stables"));
