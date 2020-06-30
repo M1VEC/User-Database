@@ -17,6 +17,18 @@ public class userInterface {
         return value;
     }
 
+    public static void addNewCustomer(ArrayList<customer> customers) {
+        String additionalCustomer = " ";
+        while (!additionalCustomer.equals("n")) {
+
+            customer.addCustomer(customers);
+            System.out.println("Add another customer: y or n");
+
+            additionalCustomer = scanner.next().toLowerCase();
+            System.out.println();
+        }
+    }
+
     public static int displayIndex() {
         System.out.println("Select customer to view or 0 to view all:");
         int value = scanner.nextInt() - 1;      //I have to use -1 as my array starts at 0 until i learn how to mitigate this
@@ -37,6 +49,6 @@ public class userInterface {
             }
                 System.out.println();
         }
-    }
+}
 
 
