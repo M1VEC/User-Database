@@ -29,16 +29,12 @@ public class userInterface {
         }
     }
 
-    public static int displayIndex() {
-        System.out.println("Select customer to view or 0 to view all:");
-        int value = scanner.nextInt() - 1;      //I have to use -1 as my array starts at 0 until i learn how to mitigate this
-        return value;                           //or I learn how to search array data
-    }
-
     //A complicated way to either print selected customer or all customers.
     //I need to learn how to search and print an array
     public static void printCustomer(ArrayList<customer> customers) {
-        int value = (displayIndex() +1);
+        System.out.println("Select customer to view or 0 to view all:");
+        int value = scanner.nextInt();
+
         if (value < 1) {
             int arrayIndex = customers.size();
             for (int index = 0; index < arrayIndex; index++) {
@@ -49,6 +45,14 @@ public class userInterface {
             }
                 System.out.println();
         }
+
+        /*
+    public static int prompt(String message){
+        System.out.println(message);
+        int value = scanner.nextInt();
+        return value;
+    }
+    */
 }
 
 
