@@ -29,30 +29,25 @@ public class userInterface {
         }
     }
 
-    //A complicated way to either print selected customer or all customers.
-    //I need to learn how to search and print an array
-    public static void printCustomer(ArrayList<customer> customers) {
-        System.out.println("Select customer to view or 0 to view all:");
-        int value = scanner.nextInt();
+    public static void searchInitiate(ArrayList<customer> customers){
+        int searchMenu = searchCustomerMenu();
+        if (searchMenu == 1)
+            search.displayAll(customers);
+        if (searchMenu == 2)
+            System.out.println("ID");
+        if (searchMenu == 3)
+            search.searchDataBase(customers);
+        if (searchMenu == 4);
+    }
 
-        if (value < 1) {
-            int arrayIndex = customers.size();
-            for (int index = 0; index < arrayIndex; index++) {
-                System.out.println(customers.get(index).print());
-            }
-        } else {
-                System.out.println(customers.get(value -1).print());
-            }
-                System.out.println();
-        }
-
-        /*
-    public static int prompt(String message){
-        System.out.println(message);
+    private static int searchCustomerMenu() {
+        System.out.println("1: Display all customers");
+        System.out.println("2: Display customer by ID");
+        System.out.println("3: Search customer database");
+        System.out.println("4: Back to main menu");
         int value = scanner.nextInt();
         return value;
     }
-    */
 }
 
 

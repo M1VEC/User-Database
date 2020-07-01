@@ -20,8 +20,7 @@ public class Main {
                 userInterface.addNewCustomer(customers);
 
             else if (menuSelection == 2)
-                userInterface.printCustomer(customers);
-            //WIP need to learn search array and print functions
+                userInterface.searchInitiate(customers);
 
             else if (menuSelection == 3)
                 System.out.println("Delete User");
