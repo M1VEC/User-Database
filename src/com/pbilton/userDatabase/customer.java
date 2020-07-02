@@ -7,21 +7,23 @@ public class customer {
     private String email;
     private String company;
     private int id;
+    public boolean softDelete;
     private static int nextId = 1;
 
-    public static customer create(String name, String email, String company) {
-        return new customer(nextId++, name, email, company);
+    public static customer create(String name, String email, String company, boolean softDelete) {
+        return new customer(nextId++, name, email, company, softDelete);
     }
 
-    public customer(int id, String name, String email, String company) {
+    public customer(int id, String name, String email, String company, boolean softDelete) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.company = company;
+        this.softDelete = false;
     }
 
     public static void addCustomer(ArrayList<customer> customers) {
-        customers.add(create(userInterface.getInput("User Name"), userInterface.getInput("Email"), userInterface.getInput("Company")));
+        customers.add(create(userInterface.getInput("User Name"), userInterface.getInput("Email"), userInterface.getInput("Company"),false));
     }
 
     public String toString() {
@@ -43,5 +45,7 @@ public class customer {
     public String getCompany(){
         return company;
     }
+
+    public boolean getDelete(){ return softDelete; }
 }
 
