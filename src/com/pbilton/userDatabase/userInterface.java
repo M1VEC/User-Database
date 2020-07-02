@@ -48,6 +48,12 @@ public class userInterface {
         int value = scanner.nextInt();
         return value;
     }
+
+    public static String getInput(String prompt) {
+        System.out.print("Please enter your " + prompt + ":");
+        String value = scanner.next();
+        return value;
+    }
 }
 
 

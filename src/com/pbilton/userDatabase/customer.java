@@ -9,7 +9,6 @@ public class customer {
     private String company;
     private int id;
     private static int nextId = 1;
-    private static Scanner scanner = new Scanner(System.in);
 
     public static customer create(String name, String email, String company) {
         return new customer(nextId++, name, email, company);
@@ -23,13 +22,7 @@ public class customer {
     }
 
     public static void addCustomer(ArrayList<customer> customers) {
-        customers.add(create(getInput("User Name"), getInput("Email"), getInput("Company")));
-    }
-
-    private static String getInput(String prompt) {
-        System.out.print("Please enter your " + prompt + ":");
-        String value = scanner.next();
-        return value;
+        customers.add(create(userInterface.getInput("User Name"), userInterface.getInput("Email"), userInterface.getInput("Company")));
     }
 
     public String print() {
