@@ -19,10 +19,6 @@ public class userInterface {
                 searchInterface.searchInitiate(customers);
 
             else if (menuSelection == 3)
-                System.out.println("Delete User");
-                //not created yet
-
-            else if (menuSelection == 4)
                 //Exit
                 break;
         }
@@ -31,8 +27,7 @@ public class userInterface {
     private static int displayMenu() {
         System.out.println("1: Add customer");
         System.out.println("2: View customer database");
-        System.out.println("3: Delete customer");
-        System.out.println("4: Exit");
+        System.out.println("3: Exit");
         System.out.println("Selection:");
         int value = scanner.nextInt();
         return value;

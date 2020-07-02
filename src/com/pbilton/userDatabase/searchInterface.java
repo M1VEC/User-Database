@@ -14,7 +14,8 @@ public class searchInterface {
         System.out.println("4: Search by name");
         System.out.println("5: Search by email");
         System.out.println("6: Search by company");
-        System.out.println("7: Return to main menu");
+        System.out.println("7: Remove customer");
+        System.out.println("8: Return to main menu");
         int value = scanner.nextInt();
         System.out.println();
         return value;
@@ -45,6 +46,10 @@ public class searchInterface {
         }
         if (searchMenu == 6){
             searchByCompany(customers);
+            searchInitiate(customers);
+        }
+        if (searchMenu == 7){
+            removeCustomer(customers);
             searchInitiate(customers);
         }
     }
@@ -129,6 +134,28 @@ public class searchInterface {
                 System.out.println("Result: " + customers.get(foundIndex).toString());
             }
         }
+    }
+
+    public static void removeCustomer(ArrayList<customer> customers){
+        System.out.println("Enter the ID of the customer you want to remove:");
+        int removeID = scanner.nextInt();
+        System.out.println();
+        int foundIndex = 0;
+
+        int arraySize = customers.size();
+        for (int index = 0; index < arraySize; index++) {
+            if (customers.get(index).getID() == removeID) {
+                foundIndex = index;
+                System.out.println("Customer to remove: " + customers.get(foundIndex).toString());
+                System.out.println("Y or N:");
+                String confirm = scanner.next().toLowerCase();
+                if (confirm.equals("y"))
+                    customers.remove(foundIndex);
+                break;
+            }
+        }
+        if (foundIndex == 0)
+            noResultFoundInt(removeID);
     }
 
     private static void noResultFoundString(String searchTerm){

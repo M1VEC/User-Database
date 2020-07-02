@@ -3,7 +3,6 @@ package com.pbilton.userDatabase;
 import java.util.ArrayList;
 import java.util.Scanner;
 //Program to create a customer database
-//Want to add search user and delete user
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
