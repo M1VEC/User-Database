@@ -1,7 +1,6 @@
 package com.pbilton.userDatabase;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class customer {
     private String name;
@@ -25,18 +24,8 @@ public class customer {
         customers.add(create(userInterface.getInput("User Name"), userInterface.getInput("Email"), userInterface.getInput("Company")));
     }
 
-    public String print() {
-        return "Customer ID: " + id + ", Name: " + name + ", Email: " + email + ", Company: " + company;
-    }
-
-    //Used to pre-populate array with customers
-    public static void preCustomerList(ArrayList<customer> customer) {
-        customer.add(create("humpty", "humpty@dumpty.com", "The wall company"));
-        customer.add(create("gg", "gg@horsey.com", "The stables"));
-        customer.add(create("bobby", "bobby@police.com", "ScotlandYard"));
-    }
-
     public String toString() {
         return "Customer ID: " + this.id + ", Name: " + this.name + ", Email: " + this.email + ", Company: " + this.company;
     }
 }
+

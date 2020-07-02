@@ -8,30 +8,18 @@ public class Main {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        int menuSelection = 0;
 
         ArrayList<customer> customers = new ArrayList<>();
-        customer.preCustomerList(customers);    //adds 3 customers to populate the list
-
-        while (!(menuSelection == 4)) {
-            menuSelection = userInterface.displayMenu();
-
-            if (menuSelection == 1)
-                userInterface.addNewCustomer(customers);
-
-            else if (menuSelection == 2)
-                userInterface.searchInitiate(customers);
-
-            else if (menuSelection == 3)
-                System.out.println("Delete User");
-            //not created yet
-
-            else if (menuSelection == 4)
-                //Exit
-                break;
-        }
+        preCustomerList(customers);
+        userInterface.openUserMenu(customers);
     }
 
+    //Used to pre-populate array with customers
+    private static void preCustomerList(ArrayList<customer> customer) {
+        customer.add(com.pbilton.userDatabase.customer.create("humpty", "humpty@dumpty.com", "The wall company"));
+        customer.add(com.pbilton.userDatabase.customer.create("gg", "gg@horsey.com", "The stables"));
+        customer.add(com.pbilton.userDatabase.customer.create("bobby", "bobby@police.com", "ScotlandYard"));
+    }
 }
 
 
