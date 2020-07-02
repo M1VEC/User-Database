@@ -27,5 +27,21 @@ public class customer {
     public String toString() {
         return "Customer ID: " + this.id + ", Name: " + this.name + ", Email: " + this.email + ", Company: " + this.company;
     }
+
+    public int getID(){
+        return id;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getEmail(){
+        return email;
+    }
+
+    public String getCompany(){
+        return company;
+    }
 }
 
