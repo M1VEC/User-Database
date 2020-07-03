@@ -3,6 +3,7 @@ package com.pbilton.userDatabase;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class searchInterface {
     private static Scanner scanner = new Scanner(System.in);
 
@@ -54,7 +55,7 @@ public class searchInterface {
             searchInitiate(customers);
         }
         if (searchMenu == 8){
-            printDeleted(customers);
+            displaySoftDelete(customers);
             searchInitiate(customers);
         }
     }
@@ -160,7 +161,6 @@ public class searchInterface {
                 String confirm = scanner.next().toLowerCase();
                 if (confirm.equals("y")) {
                     customers.get(index).softDelete = true;
-                    System.out.println();
                     break;
                 }
             }
@@ -169,7 +169,7 @@ public class searchInterface {
             noResultFoundInt(removeID);
     }
 
-    private static void printDeleted(ArrayList<customer> customers){
+    private static void displaySoftDelete(ArrayList<customer> customers){
         int arraySize = customers.size();
         for (int index = 0; index < arraySize; index++) {
             if (customers.get(index).softDelete == true)

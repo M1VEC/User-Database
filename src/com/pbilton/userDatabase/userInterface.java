@@ -25,6 +25,7 @@ public class userInterface {
     }
 
     private static int displayMenu() {
+        System.out.println();
         System.out.println("1: Add customer");
         System.out.println("2: View customer database");
         System.out.println("3: Exit");
@@ -42,7 +43,6 @@ public class userInterface {
             System.out.println("Add another customer: y or n");
 
             additionalCustomer = scanner.next().toLowerCase();
-            System.out.println();
         }
     }
 

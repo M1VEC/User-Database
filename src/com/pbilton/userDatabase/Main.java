@@ -9,15 +9,8 @@ public class Main {
     public static void main(String[] args) {
 
         ArrayList<customer> customers = new ArrayList<>();
-        preCustomerList(customers);
+        customer.preCustomerList(customers);
         userInterface.openUserMenu(customers);
-    }
-
-    //Used to pre-populate array with customers
-    private static void preCustomerList(ArrayList<customer> customer) {
-        customer.add(com.pbilton.userDatabase.customer.create("humpty", "humpty@dumpty.com", "The wall company",false));
-        customer.add(com.pbilton.userDatabase.customer.create("gg", "gg@horsey.com", "The stables",false));
-        customer.add(com.pbilton.userDatabase.customer.create("bobby", "bobby@police.com", "ScotlandYard",false));
     }
 }
 

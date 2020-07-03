@@ -10,11 +10,11 @@ public class customer {
     public boolean softDelete;
     private static int nextId = 1;
 
-    public static customer create(String name, String email, String company, boolean softDelete) {
+    private static customer create(String name, String email, String company, boolean softDelete) {
         return new customer(nextId++, name, email, company, softDelete);
     }
 
-    public customer(int id, String name, String email, String company, boolean softDelete) {
+    private customer(int id, String name, String email, String company, boolean softDelete) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -24,6 +24,13 @@ public class customer {
 
     public static void addCustomer(ArrayList<customer> customers) {
         customers.add(create(userInterface.getInput("User Name"), userInterface.getInput("Email"), userInterface.getInput("Company"),false));
+    }
+
+    //Used to pre-populate array with customers
+    public static void preCustomerList(ArrayList<customer> customer) {
+        customer.add(create("humpty", "humpty@dumpty.com", "The wall company",false));
+        customer.add(create("gg", "gg@horsey.com", "The stables",false));
+        customer.add(create("bobby", "bobby@police.com", "ScotlandYard",false));
     }
 
     public String toString() {
@@ -45,7 +52,5 @@ public class customer {
     public String getCompany(){
         return company;
     }
-
-    public boolean getDelete(){ return softDelete; }
 }
 
