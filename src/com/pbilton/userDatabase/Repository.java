@@ -7,4 +7,7 @@ public interface Repository<t>{
     void add(t item);
 
     ArrayList<t> getAll();
+
+    ArrayList<t> search(String criteria, String searchTerm);
+
 }

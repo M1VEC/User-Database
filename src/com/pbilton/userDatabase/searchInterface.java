@@ -25,45 +25,43 @@ public class searchInterface {
 
     public static void searchInitiate(Repository<customer> customerRepository) {
         ArrayList<customer> customers = customerRepository.getAll();
-        searchInitiate(customers);
-
+        searchInitiate(customers, customerRepository);
     }
 
-
-    private static void searchInitiate(ArrayList<customer> customers) {
+    private static void searchInitiate(ArrayList<customer> customers, Repository<customer> customerRepository) {
         int searchMenu = searchDatabaseOption();
 
         if (searchMenu == 1) {
             displayAll(customers);
-            searchInitiate(customers);
+            searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 2) {
             searchDataBase(customers);
-            searchInitiate(customers);
+            searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 3) {
             searchByID(customers);
-            searchInitiate(customers);
+            searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 4){
-            searchByName(customers);
-            searchInitiate(customers);
+            searchByName(customerRepository);
+            searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 5){
             searchByEmail(customers);
-            searchInitiate(customers);
+            searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 6){
             searchByCompany(customers);
-            searchInitiate(customers);
+            searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 7){
             removeCustomer(customers);
-            searchInitiate(customers);
+            searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 8){
             displaySoftDelete(customers);
-            searchInitiate(customers);
+            searchInitiate(customers, customerRepository);
         }
     }
 
@@ -91,20 +89,20 @@ public class searchInterface {
             noResultFoundInt(searchTerm);
     }
 
-    private static void searchByName(ArrayList<customer> customers) {
+    private static void searchByName(Repository<customer> customerRepository) {
         System.out.println("Please enter name: ");
         String searchTerm = scanner.next();
-        int foundIndex = 0;
 
-        int arraySize = customers.size();
-        for (int index = 0; index < arraySize; index++) {
-            if ((customers.get(index).getName().contains(searchTerm))&& (customers.get(index).softDelete == false)){
-                foundIndex = index + 1;
-                System.out.println("Result: " + customers.get(index).toString());
-            }
-        }
-        if (foundIndex == 0)
+        ArrayList<customer> results = customerRepository.search("name", searchTerm);
+        int resultsArraySize = results.size();
+
+        if (resultsArraySize == 0) {
             noResultFoundString(searchTerm);
+            return;
+        }
+
+        for (customer c : results)
+            System.out.println("Result: " + c.toString());
     }
 
     private static void searchByEmail(ArrayList<customer> customers) {
