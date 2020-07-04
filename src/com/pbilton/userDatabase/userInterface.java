@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class userInterface {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void openUserMenu(ArrayList<customer> customers, Repository<customer> customerRepository){
+    public static void openUserMenu(Repository<customer> customerRepository){
         int menuSelection = 0;
 
         while (!(menuSelection == 4)) {
@@ -16,8 +16,7 @@ public class userInterface {
                 addNewCustomer(customerRepository);
 
             else if (menuSelection == 2)
-                searchInterface.searchInitiate(customers);
-
+                searchInterface.searchInitiate(customerRepository);
             else if (menuSelection == 3)
                 //Exit
                 break;

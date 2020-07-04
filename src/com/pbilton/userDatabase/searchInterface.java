@@ -22,7 +22,15 @@ public class searchInterface {
         return value;
     }
 
-    public static void searchInitiate(ArrayList<customer> customers) {
+
+    public static void searchInitiate(Repository<customer> customerRepository) {
+        ArrayList<customer> customers = customerRepository.getAll();
+        searchInitiate(customers);
+
+    }
+
+
+    private static void searchInitiate(ArrayList<customer> customers) {
         int searchMenu = searchDatabaseOption();
 
         if (searchMenu == 1) {

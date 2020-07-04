@@ -14,4 +14,9 @@ public class inMemoryCustomerRepository implements Repository<customer>{
     public void add(customer c) {
         this.customers.add(c);
     }
+
+    @Override
+    public ArrayList<customer> getAll() {
+        return customers;
+    }
 }
