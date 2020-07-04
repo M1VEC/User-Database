@@ -10,7 +10,7 @@ public class customer {
     public boolean softDelete;
     private static int nextId = 1;
 
-    private static customer create(String name, String email, String company, boolean softDelete) {
+    public static customer create(String name, String email, String company, boolean softDelete) {
         return new customer(nextId++, name, email, company, softDelete);
     }
 
@@ -20,10 +20,6 @@ public class customer {
         this.email = email;
         this.company = company;
         this.softDelete = false;
-    }
-
-    public static void addCustomer(ArrayList<customer> customers) {
-        customers.add(create(userInterface.getInput("User Name"), userInterface.getInput("Email"), userInterface.getInput("Company"),false));
     }
 
     //Used to pre-populate array with customers

@@ -3,7 +3,6 @@ package com.pbilton.userDatabase;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class searchInterface {
     private static Scanner scanner = new Scanner(System.in);
 

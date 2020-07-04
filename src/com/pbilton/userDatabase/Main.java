@@ -9,9 +9,10 @@ public class Main {
     public static void main(String[] args) {
 
         ArrayList<customer> customers = new ArrayList<>();
+        Repository<customer> customerRepository = new inMemoryCustomerRepository(customers);
         customer.preCustomerList(customers);
-        userInterface.openUserMenu(customers);
+        userInterface.openUserMenu(customers, customerRepository);
+
     }
 }
-
 

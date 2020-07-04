@@ -6,14 +6,14 @@ import java.util.Scanner;
 public class userInterface {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void openUserMenu(ArrayList<customer> customers){
+    public static void openUserMenu(ArrayList<customer> customers, Repository<customer> customerRepository){
         int menuSelection = 0;
 
         while (!(menuSelection == 4)) {
             menuSelection = displayMenu();
 
             if (menuSelection == 1)
-                addNewCustomer(customers);
+                addNewCustomer(customerRepository);
 
             else if (menuSelection == 2)
                 searchInterface.searchInitiate(customers);
@@ -34,16 +34,20 @@ public class userInterface {
         return value;
     }
 
-    private static void addNewCustomer(ArrayList<customer> customers) {
+    private static void addNewCustomer(Repository<customer> customers) {
         String additionalCustomer = " ";
         while (!additionalCustomer.equals("n")) {
             System.out.println();
 
-            customer.addCustomer(customers);
+            customers.add(createCustomer());
             System.out.println("Add another customer: y or n");
 
             additionalCustomer = scanner.next().toLowerCase();
         }
+    }
+
+    private static customer createCustomer() {
+        return customer.create(userInterface.getInput("User Name"), userInterface.getInput("Email"), userInterface.getInput("Company"),false);
     }
 
     public static String getInput(String prompt) {
