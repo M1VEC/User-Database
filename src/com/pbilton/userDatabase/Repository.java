@@ -10,4 +10,5 @@ public interface Repository<t>{
 
     ArrayList<t> search(String criteria, String searchTerm);
 
+    ArrayList<t> displayAll();
 }

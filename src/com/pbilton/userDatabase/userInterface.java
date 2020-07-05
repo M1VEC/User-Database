@@ -1,6 +1,5 @@
 package com.pbilton.userDatabase;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class userInterface {
@@ -49,7 +48,7 @@ public class userInterface {
         return customer.create(userInterface.getInput("User Name"), userInterface.getInput("Email"), userInterface.getInput("Company"),false);
     }
 
-    public static String getInput(String prompt) {
+    private static String getInput(String prompt) {
         System.out.print("Please enter your " + prompt + ":");
         String value = scanner.next();
         return value;

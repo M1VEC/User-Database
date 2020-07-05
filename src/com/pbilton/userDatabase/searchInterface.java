@@ -22,7 +22,6 @@ public class searchInterface {
         return value;
     }
 
-
     public static void searchInitiate(Repository<customer> customerRepository) {
         ArrayList<customer> customers = customerRepository.getAll();
         searchInitiate(customers, customerRepository);
@@ -32,7 +31,7 @@ public class searchInterface {
         int searchMenu = searchDatabaseOption();
 
         if (searchMenu == 1) {
-            displayAll(customers);
+            displayAll(customerRepository);
             searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 2) {
@@ -40,7 +39,7 @@ public class searchInterface {
             searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 3) {
-            searchByID(customers);
+            searchByID(customerRepository);
             searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 4){
@@ -48,11 +47,11 @@ public class searchInterface {
             searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 5){
-            searchByEmail(customers);
+            searchByEmail(customerRepository);
             searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 6){
-            searchByCompany(customers);
+            searchByCompany(customerRepository);
             searchInitiate(customers, customerRepository);
         }
         if (searchMenu == 7){
@@ -65,28 +64,31 @@ public class searchInterface {
         }
     }
 
-    private static void displayAll(ArrayList<customer> customers) {
-        int arraySize = customers.size();
-        for (int index = 0; index < arraySize; index++) {
-            if (customers.get(index).softDelete == false)
-            System.out.println(customers.get(index));
+    private static void displayAll(Repository<customer> customerRepository) {
+        ArrayList<customer> displayAll = customerRepository.displayAll();
+        int allArraySize = displayAll.size();
+
+        if (allArraySize == 0) {
+            System.out.println("No records found");;
+            return;
         }
+        for (customer c : displayAll)
+            System.out.println(c.toString());
     }
 
-    private static void searchByID(ArrayList<customer> customers) {
+    private static void searchByID(Repository<customer> customerRepository) {
         System.out.println("Please enter ID number: ");
-        int searchTerm = scanner.nextInt();
-        int foundIndex = 0;
+        String searchTerm = scanner.next();
 
-        int arraySize = customers.size();
-        for (int index = 0; index < arraySize; index++) {
-            if ((customers.get(index).getID() == searchTerm) && (customers.get(index).softDelete == false)){
-                foundIndex = index +1;
-                System.out.println("Result: " + customers.get(index).toString());
-            }
+        ArrayList<customer> results = customerRepository.search("ID", searchTerm);
+        int resultsArraySize = results.size();
+
+        if (resultsArraySize == 0) {
+            noResultFoundString(searchTerm);
+            return;
         }
-        if (foundIndex == 0)
-            noResultFoundInt(searchTerm);
+        for (customer c : results)
+            System.out.println("Result: " + c.toString());
     }
 
     private static void searchByName(Repository<customer> customerRepository) {
@@ -100,41 +102,38 @@ public class searchInterface {
             noResultFoundString(searchTerm);
             return;
         }
-
         for (customer c : results)
             System.out.println("Result: " + c.toString());
     }
 
-    private static void searchByEmail(ArrayList<customer> customers) {
+    private static void searchByEmail(Repository<customer> customerRepository) {
         System.out.println("Please enter email: ");
         String searchTerm = scanner.next();
-        int foundIndex = 0;
 
-        int arraySize = customers.size();
-        for (int index = 0; index < arraySize; index++) {
-            if ((customers.get(index).getEmail().contains(searchTerm))&& (customers.get(index).softDelete == false)){
-                foundIndex = index +1;
-                System.out.println("Result: " + customers.get(index).toString());
-            }
-        }
-        if (foundIndex == 0)
+        ArrayList<customer> results = customerRepository.search("email", searchTerm);
+        int resultsArraySize = results.size();
+
+        if (resultsArraySize == 0) {
             noResultFoundString(searchTerm);
+            return;
+        }
+        for (customer c : results)
+            System.out.println("Result: " + c.toString());
     }
 
-    private static void searchByCompany(ArrayList<customer> customers) {
+    private static void searchByCompany(Repository<customer> customerRepository) {
         System.out.println("Please enter company: ");
         String searchTerm = scanner.next();
-        int foundIndex = 0;
 
-        int arraySize = customers.size();
-        for (int index = 0; index < arraySize; index++) {
-            if ((customers.get(index).getCompany().contains(searchTerm)) && (customers.get(index).softDelete == false)){
-                foundIndex = index + 1;
-                System.out.println("Result: " + customers.get(index).toString());
-            }
-        }
-        if (foundIndex == 0)
+        ArrayList<customer> results = customerRepository.search("company", searchTerm);
+        int resultsArraySize = results.size();
+
+        if (resultsArraySize == 0) {
             noResultFoundString(searchTerm);
+            return;
+        }
+        for (customer c : results)
+            System.out.println("Result: " + c.toString());
     }
 
     private static void searchDataBase(ArrayList<customer> customers) { //Search all instances of database
