@@ -15,7 +15,7 @@ public class userInterface {
                 addNewCustomer(customerRepository);
 
             else if (menuSelection == 2)
-                searchInterface.searchInitiate(customerRepository);
+                searchInterface.searchMenu(customerRepository);
             else if (menuSelection == 3)
                 //Exit
                 break;
