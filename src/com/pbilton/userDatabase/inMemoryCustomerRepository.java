@@ -25,60 +25,46 @@ public class inMemoryCustomerRepository implements Repository<customer> {
         ArrayList<customer> results = new ArrayList<>();
 
         if (criteria == "displayAll") {
-            int arraySize = customers.size();
-            for (int index = 0; index < arraySize; index++) {
-                if (customers.get(index).softDelete == false) {
-                    results.add(customers.get(index));gi
-                }
+            for (customer c : customers) {
+                if (c.softDelete == false)
+                    results.add(c);
             }
 
         } else if (criteria == "name") {
-            int arraySize = customers.size();
-            for (int index = 0; index < arraySize; index++) {
-                if ((customers.get(index).getName().contains(searchTerm)) && (customers.get(index).softDelete == false)) {
-                    results.add(customers.get(index));
-                }
+            for (customer c : customers){
+                if ((c.getName().contains(searchTerm)) && (c.softDelete==false))
+                    results.add(c);
             }
 
         } else if (criteria == "ID") {
-            int arraySize = customers.size();
             int searchTermInt = Integer.parseInt(searchTerm);
-            for (int index = 0; index < arraySize; index++) {
-                if (customers.get(index).getID() == searchTermInt && (customers.get(index).softDelete == false)) {
-                    results.add(customers.get(index));
-                }
+            for (customer c : customers){
+                if ((c.getID() == searchTermInt) && (c.softDelete==false))
+                    results.add(c);
             }
 
         } else if (criteria == "email") {
-            int arraySize = customers.size();
-            for (int index = 0; index < arraySize; index++) {
-                if ((customers.get(index).getEmail().contains(searchTerm)) && (customers.get(index).softDelete == false)) {
-                    results.add(customers.get(index));
-                }
+            for (customer c : customers){
+                if ((c.getEmail().contains(searchTerm)) && (c.softDelete==false))
+                    results.add(c);
             }
 
         } else if (criteria == "company") {
-            int arraySize = customers.size();
-            for (int index = 0; index < arraySize; index++) {
-                if ((customers.get(index).getCompany().contains(searchTerm)) && (customers.get(index).softDelete == false)) {
-                    results.add(customers.get(index));
-                }
+            for (customer c : customers){
+                if ((c.getCompany().contains(searchTerm)) && (c.softDelete==false))
+                    results.add(c);
             }
 
         } else if (criteria == "complete") {
-            int arraySize = customers.size();
-            for (int index = 0; index < arraySize; index++) {
-                if ((customers.get(index).toString().contains(searchTerm)) && (customers.get(index).softDelete == false)) {
-                    results.add(customers.get(index));
-                }
+            for (customer c : customers){
+                if ((c.toString().contains(searchTerm)) && (c.softDelete==false))
+                    results.add(c);
             }
 
         } else if (criteria == "softDelete") {
-            int arraySize = customers.size();
-            for (int index = 0; index < arraySize; index++) {
-                if (customers.get(index).softDelete == true) {
-                    results.add(customers.get(index));
-                }
+            for (customer c : customers){
+                if (c.softDelete==true)
+                    results.add(c);
             }
         }
         return results;
@@ -87,17 +73,17 @@ public class inMemoryCustomerRepository implements Repository<customer> {
     @Override
     public ArrayList<customer> remove(String criteria, int removeID) {
         Scanner scanner = new Scanner(System.in);
-
         ArrayList<customer> results = new ArrayList<>();
-        int arraySize = customers.size();
-        for (int index = 0; index < arraySize; index++) {
-            if ((customers.get(index).getID() == removeID) && (customers.get(index).softDelete == false)) {
-                System.out.println("Customer to remove: " + customers.get(index).toString());
+
+        for (customer c : customers) {
+            if ((c.getID() == removeID) && (c.softDelete == false)) {
+                System.out.println("Customer to remove: " + c.toString());
                 System.out.println("Y or N:");
                 String confirm = scanner.next().toLowerCase();
+
                 if (confirm.equals("y")) {
-                    customers.get(index).softDelete = true;
-                    results.add(customers.get(index));
+                    c.softDelete = true;
+                    results.add(c);
                     break;
                 }
             }
