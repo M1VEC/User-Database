@@ -1,7 +1,6 @@
 package com.pbilton.userDatabase;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class inMemoryCustomerRepository implements Repository<customer> {
     private ArrayList<customer> customers;
@@ -72,23 +71,16 @@ public class inMemoryCustomerRepository implements Repository<customer> {
 
     @Override
     public ArrayList<customer> remove(String criteria, int removeID) {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<customer> results = new ArrayList<>();
+        ArrayList<customer> removeResults = new ArrayList<>();
 
         for (customer c : customers) {
             if ((c.getID() == removeID) && (c.softDelete == false)) {
-                System.out.println("Customer to remove: " + c.toString());
-                System.out.println("Y or N:");
-                String confirm = scanner.next().toLowerCase();
-
-                if (confirm.equals("y")) {
                     c.softDelete = true;
-                    results.add(c);
+                    removeResults.add(c);
                     break;
-                }
             }
         }
-        return results;
+        return removeResults;
     }
 }
 

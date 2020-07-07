@@ -2,27 +2,27 @@ package com.pbilton.userDatabase;
 
 import java.util.Scanner;
 
-public class userInterface {
+public class userInputClass {
     private static Scanner scanner = new Scanner(System.in);
 
     public static void openUserMenu(Repository<customer> customerRepository){
         int menuSelection = 0;
 
         while (!(menuSelection == 4)) {
-            menuSelection = displayMenu();
+            menuSelection = displayUserMenu();
 
             if (menuSelection == 1)
                 addNewCustomer(customerRepository);
 
             else if (menuSelection == 2)
-                searchInterface.searchMenu(customerRepository);
+                searchBaseClass.searchMenu(customerRepository);
             else if (menuSelection == 3)
                 //Exit
                 break;
         }
     }
 
-    private static int displayMenu() {
+    private static int displayUserMenu() {
         System.out.println();
         System.out.println("1: Add customer");
         System.out.println("2: View customer database");
@@ -45,7 +45,7 @@ public class userInterface {
     }
 
     private static customer createCustomer() {
-        return customer.create(userInterface.getInput("User Name"), userInterface.getInput("Email"), userInterface.getInput("Company"),false);
+        return customer.create(userInputClass.getInput("User Name"), userInputClass.getInput("Email"), userInputClass.getInput("Company"),false);
     }
 
     private static String getInput(String prompt) {

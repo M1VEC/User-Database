@@ -27,6 +27,13 @@ public class customer {
         customer.add(create("humpty", "humpty@dumpty.com", "The wall company",false));
         customer.add(create("gg", "gg@horsey.com", "The stables",false));
         customer.add(create("bobby", "bobby@police.com", "ScotlandYard",false));
+        customer.add(create("grumpy", "grumpy@dwarfs.com", "Snowwhite",false));
+        customer.add(create("happy", "happy@dwarfs.com", "Snowwhite",false));
+        customer.add(create("sleepy", "sleepy@dwarfs.com", "Snowwhite",false));
+        customer.add(create("bashful", "bashful@dwarfs.com", "Snowwhite",false));
+        customer.add(create("sneezy", "sneezy@dwarfs.com", "Snowwhite",false));
+        customer.add(create("dopey", "dopey@dwarfs.com", "Snowwhite",false));
+        customer.add(create("doc", "doc@dwarfs.com", "Snowwhite",false));
     }
 
     public String toString() {
