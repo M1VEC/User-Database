@@ -1,10 +1,8 @@
 package com.pbilton.userDatabase;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class searchBaseClass {
-    private static Scanner scanner = new Scanner(System.in);
 
     public static void searchMenu(Repository<customer> customerRepository){
         searchInitiate(customerRepository);
@@ -12,7 +10,8 @@ public class searchBaseClass {
 
     private static void searchInitiate(Repository<customer> customerRepository) {
         customerRepository.getAll();
-        int searchMenu = searchDatabaseOption();
+        searchDatabaseOption();
+        int searchMenu = userInputClass.numberPrompt("Selection: ");
         if (searchMenu != 9) {
             if (searchMenu == 1)
                 viewAll(customerRepository);
@@ -35,7 +34,7 @@ public class searchBaseClass {
         }
     }
 
-    private static int searchDatabaseOption(){
+    private static void searchDatabaseOption(){
         System.out.println();
         System.out.println("1: View all");
         System.out.println("2: Search complete database");
@@ -46,9 +45,6 @@ public class searchBaseClass {
         System.out.println("7: Remove customer");
         System.out.println("8: View removed customers");
         System.out.println("9: Return to main menu");
-        int value = scanner.nextInt();
-        System.out.println();
-        return value;
     }
 
     private static void viewAll(Repository<customer> customerRepository) {
@@ -56,14 +52,13 @@ public class searchBaseClass {
 
         int value = noRecordsFound(results);
         if (value == 0) return;
-        
+
         for (customer c : results)
             System.out.println(c.toString());
     }
 
     private static void searchCompleteDataBase(Repository<customer> customerRepository) {
-        System.out.println("Search term: ");
-        String searchTerm = scanner.next();
+        String searchTerm = userInputClass.stringPrompt("Search term: ");
 
         ArrayList<customer> results = customerRepository.search("complete", searchTerm);
 
@@ -75,8 +70,7 @@ public class searchBaseClass {
     }
 
     private static void searchByID(Repository<customer> customerRepository) {
-        System.out.println("Please enter ID number: ");
-        String searchTerm = scanner.next();
+        String searchTerm = userInputClass.stringPrompt("Please enter ID number: ");
 
         ArrayList<customer> results = customerRepository.search("ID", searchTerm);
 
@@ -88,8 +82,7 @@ public class searchBaseClass {
     }
 
     private static void searchByName(Repository<customer> customerRepository) {
-        System.out.println("Please enter name: ");
-        String searchTerm = scanner.next();
+        String searchTerm = userInputClass.stringPrompt("Please enter name: ");
 
         ArrayList<customer> results = customerRepository.search("name", searchTerm);
 
@@ -101,8 +94,7 @@ public class searchBaseClass {
     }
 
     private static void searchByEmail(Repository<customer> customerRepository) {
-        System.out.println("Please enter email: ");
-        String searchTerm = scanner.next();
+        String searchTerm = userInputClass.stringPrompt("Please enter email: ");
 
         ArrayList<customer> results = customerRepository.search("email", searchTerm);
 
@@ -114,8 +106,7 @@ public class searchBaseClass {
     }
 
     private static void searchByCompany(Repository<customer> customerRepository) {
-        System.out.println("Please enter company: ");
-        String searchTerm = scanner.next();
+        String searchTerm = userInputClass.stringPrompt("Please enter company name: ");
 
         ArrayList<customer> results = customerRepository.search("company", searchTerm);
 
@@ -127,19 +118,17 @@ public class searchBaseClass {
     }
 
     private static void removeCustomer(Repository<customer> customerRepository) {
-        System.out.println("Enter the ID of the customer you want to remove:");
-        String searchTerm = scanner.next();
+        String searchTerm = userInputClass.stringPrompt("Enter the ID of the customer you want to remove: ");
 
         ArrayList<customer> results = customerRepository.search("ID", searchTerm);
 
         int value = noRecordsFound(results);
         if (value == 0) return;
 
-
         for (customer c : results) {
             System.out.println("Customer to remove: " + c.toString());
             System.out.println("Y or N:");
-            String confirm = scanner.next().toLowerCase();
+            String confirm = userInputClass.stringPrompt("Y or N: ").toLowerCase();
             if (confirm.equals("y")) {
                 customerRepository.remove(c);
             }

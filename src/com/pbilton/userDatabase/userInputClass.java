@@ -9,8 +9,8 @@ public class userInputClass {
         int menuSelection = 0;
 
         while (!(menuSelection == 4)) {
-            menuSelection = displayUserMenu();
-
+            displayUserMenu();
+            menuSelection = numberPrompt("Selection: ");
             if (menuSelection == 1)
                 addNewCustomer(customerRepository);
 
@@ -22,14 +22,11 @@ public class userInputClass {
         }
     }
 
-    private static int displayUserMenu() {
+    private static void displayUserMenu() {
         System.out.println();
         System.out.println("1: Add customer");
         System.out.println("2: View customer database");
         System.out.println("3: Exit");
-        System.out.println("Selection:");
-        int value = scanner.nextInt();
-        return value;
     }
 
     private static void addNewCustomer(Repository<customer> customers) {
@@ -38,19 +35,26 @@ public class userInputClass {
             System.out.println();
 
             customers.add(createCustomer());
-            System.out.println("Add another customer: y or n");
-
-            additionalCustomer = scanner.next().toLowerCase();
+            additionalCustomer = stringPrompt("Add another customer: y or n").toLowerCase();
         }
     }
 
     private static customer createCustomer() {
-        return customer.create(userInputClass.getInput("User Name"), userInputClass.getInput("Email"), userInputClass.getInput("Company"),false);
+        return customer.create(stringPrompt("Please enter User Name: "),
+                stringPrompt("Please enter Email address: "),
+                stringPrompt("Please enter Company name"),
+                false);
     }
 
-    private static String getInput(String prompt) {
-        System.out.print("Please enter your " + prompt + ":");
+    public static String stringPrompt(String prompt) {
+        System.out.println(prompt);
         String value = scanner.next();
+        return value;
+    }
+
+    public static int numberPrompt(String prompt){
+        System.out.println(prompt);
+        int value = scanner.nextInt();
         return value;
     }
 }
