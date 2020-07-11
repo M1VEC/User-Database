@@ -10,9 +10,10 @@ public class inMemoryCustomerRepository implements Repository<customer> {
     }
 
     @Override
-    public void add(customer c) {
-        this.customers.add(c);
-    }
+    public void add(customer c) { this.customers.add(c); }
+
+    @Override
+    public void remove(customer c) { c.softDelete = true; }
 
     @Override
     public ArrayList<customer> getAll() {
@@ -67,20 +68,6 @@ public class inMemoryCustomerRepository implements Repository<customer> {
             }
         }
         return results;
-    }
-
-    @Override
-    public ArrayList<customer> remove(String criteria, int removeID) {
-        ArrayList<customer> removeResults = new ArrayList<>();
-
-        for (customer c : customers) {
-            if ((c.getID() == removeID) && (c.softDelete == false)) {
-                    c.softDelete = true;
-                    removeResults.add(c);
-                    break;
-            }
-        }
-        return removeResults;
     }
 }
 

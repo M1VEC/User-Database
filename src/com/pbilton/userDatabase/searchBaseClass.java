@@ -52,14 +52,12 @@ public class searchBaseClass {
     }
 
     private static void viewAll(Repository<customer> customerRepository) {
-        ArrayList<customer> displayAll = customerRepository.search("displayAll",null);
-        int allArraySize = displayAll.size();
+        ArrayList<customer> results = customerRepository.search("displayAll",null);
 
-        if (allArraySize == 0) {
-            System.out.println("No records found");;
-            return;
-        }
-        for (customer c : displayAll)
+        int value = noRecordsFound(results);
+        if (value == 0) return;
+        
+        for (customer c : results)
             System.out.println(c.toString());
     }
 
@@ -68,12 +66,10 @@ public class searchBaseClass {
         String searchTerm = scanner.next();
 
         ArrayList<customer> results = customerRepository.search("complete", searchTerm);
-        int resultsArraySize = results.size();
 
-        if (resultsArraySize == 0) {
-            noRecordsFound(searchTerm);
-            return;
-        }
+        int value = noRecordsFound(results);
+        if (value == 0) return;
+
         for (customer c : results)
             System.out.println("Result: " + c.toString());
     }
@@ -83,12 +79,10 @@ public class searchBaseClass {
         String searchTerm = scanner.next();
 
         ArrayList<customer> results = customerRepository.search("ID", searchTerm);
-        int resultsArraySize = results.size();
 
-        if (resultsArraySize == 0) {
-            noRecordsFound(searchTerm);
-            return;
-        }
+        int value = noRecordsFound(results);
+        if (value == 0) return;
+
         for (customer c : results)
             System.out.println("Result: " + c.toString());
     }
@@ -98,12 +92,10 @@ public class searchBaseClass {
         String searchTerm = scanner.next();
 
         ArrayList<customer> results = customerRepository.search("name", searchTerm);
-        int resultsArraySize = results.size();
 
-        if (resultsArraySize == 0) {
-            noRecordsFound(searchTerm);
-            return;
-        }
+        int value = noRecordsFound(results);
+        if (value == 0) return;
+
         for (customer c : results)
             System.out.println("Result: " + c.toString());
     }
@@ -113,12 +105,10 @@ public class searchBaseClass {
         String searchTerm = scanner.next();
 
         ArrayList<customer> results = customerRepository.search("email", searchTerm);
-        int resultsArraySize = results.size();
 
-        if (resultsArraySize == 0) {
-            noRecordsFound(searchTerm);
-            return;
-        }
+        int value = noRecordsFound(results);
+        if (value == 0) return;
+
         for (customer c : results)
             System.out.println("Result: " + c.toString());
     }
@@ -128,57 +118,51 @@ public class searchBaseClass {
         String searchTerm = scanner.next();
 
         ArrayList<customer> results = customerRepository.search("company", searchTerm);
-        int resultsArraySize = results.size();
 
-        if (resultsArraySize == 0) {
-            noRecordsFound(searchTerm);
-            return;
-        }
+        int value = noRecordsFound(results);
+        if (value == 0) return;
+
         for (customer c : results)
             System.out.println("Result: " + c.toString());
     }
 
-    private static void removeCustomer(Repository<customer> customerRepository){
+    private static void removeCustomer(Repository<customer> customerRepository) {
         System.out.println("Enter the ID of the customer you want to remove:");
         String searchTerm = scanner.next();
 
         ArrayList<customer> results = customerRepository.search("ID", searchTerm);
-        int resultsArraySize = results.size();
 
-        if (resultsArraySize == 0) {
-            noRecordsFound(searchTerm);
-            return;
-        }
+        int value = noRecordsFound(results);
+        if (value == 0) return;
+
+
         for (customer c : results) {
             System.out.println("Customer to remove: " + c.toString());
-        }
-
-        System.out.println("Y or N:");
-        String confirm = scanner.next().toLowerCase();
-        int removeID = Integer.parseInt(searchTerm);
-        if (confirm.equals("y")) {
-            ArrayList<customer> removeResults = customerRepository.remove("complete", removeID);
-
-            for (customer c : removeResults)
-                System.out.println("Removed: " + c.toString());
+            System.out.println("Y or N:");
+            String confirm = scanner.next().toLowerCase();
+            if (confirm.equals("y")) {
+                customerRepository.remove(c);
+            }
         }
     }
-
     private static void viewRemovedCustomer(Repository<customer> customerRepository) {
         ArrayList<customer> results = customerRepository.search("softDelete", null);
-        int resultsArraySize = results.size();
 
-        if (resultsArraySize == 0) {
-            noRecordsFound("Deleted records");
-            return;
-        }
+        int value = noRecordsFound(results);
+        if (value == 0) return;
+
         for (customer c : results)
             System.out.println("Result: " + c.toString());
     }
 
-    private static void noRecordsFound(String searchTerm){
-        System.out.println("No results for " + searchTerm + " found");
-        System.out.println("Please try another term");
+    private static int noRecordsFound(ArrayList<customer> results){
+        int resultsArraySize = results.size();
+
+        if (resultsArraySize == 0) {
+            System.out.println("No results found");;
+            return resultsArraySize;
+        }
+        return resultsArraySize;
     }
 }
 
