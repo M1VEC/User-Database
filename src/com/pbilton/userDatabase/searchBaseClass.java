@@ -149,8 +149,7 @@ public class searchBaseClass {
 
         if (resultsArraySize == 0) {
             System.out.println("No results found");;
-            return resultsArraySize;
-        }
+            }
         return resultsArraySize;
     }
 }
