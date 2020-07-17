@@ -43,18 +43,17 @@ public class searchBaseClass {
         System.out.println("5: Search by email");
         System.out.println("6: Search by company");
         System.out.println("7: Remove customer");
-        System.out.println("8: View removed customers");
+        System.out.println("8: View removed customers/not implemented");
         System.out.println("9: Return to main menu");
     }
 
     private static void viewAll(Repository<customer> customerRepository) {
         ArrayList<customer> results = customerRepository.search("displayAll",null);
 
-        int value = noRecordsFound(results);
-        if (value == 0) return;
-
         for (customer c : results)
             System.out.println(c.toString());
+
+        noRecordsFound(results);
     }
 
     private static void searchCompleteDataBase(Repository<customer> customerRepository) {
@@ -62,11 +61,10 @@ public class searchBaseClass {
 
         ArrayList<customer> results = customerRepository.search("complete", searchTerm);
 
-        int value = noRecordsFound(results);
-        if (value == 0) return;
-
         for (customer c : results)
             System.out.println("Result: " + c.toString());
+
+        noRecordsFound(results);
     }
 
     private static void searchByID(Repository<customer> customerRepository) {
@@ -74,11 +72,10 @@ public class searchBaseClass {
 
         ArrayList<customer> results = customerRepository.search("ID", searchTerm);
 
-        int value = noRecordsFound(results);
-        if (value == 0) return;
-
         for (customer c : results)
             System.out.println("Result: " + c.toString());
+
+        noRecordsFound(results);
     }
 
     private static void searchByName(Repository<customer> customerRepository) {
@@ -86,11 +83,10 @@ public class searchBaseClass {
 
         ArrayList<customer> results = customerRepository.search("name", searchTerm);
 
-        int value = noRecordsFound(results);
-        if (value == 0) return;
-
         for (customer c : results)
             System.out.println("Result: " + c.toString());
+
+        noRecordsFound(results);
     }
 
     private static void searchByEmail(Repository<customer> customerRepository) {
@@ -98,11 +94,10 @@ public class searchBaseClass {
 
         ArrayList<customer> results = customerRepository.search("email", searchTerm);
 
-        int value = noRecordsFound(results);
-        if (value == 0) return;
-
         for (customer c : results)
             System.out.println("Result: " + c.toString());
+
+        noRecordsFound(results);
     }
 
     private static void searchByCompany(Repository<customer> customerRepository) {
@@ -110,20 +105,16 @@ public class searchBaseClass {
 
         ArrayList<customer> results = customerRepository.search("company", searchTerm);
 
-        int value = noRecordsFound(results);
-        if (value == 0) return;
-
         for (customer c : results)
             System.out.println("Result: " + c.toString());
+
+        noRecordsFound(results);
     }
 
     private static void removeCustomer(Repository<customer> customerRepository) {
         String searchTerm = userInputClass.stringPrompt("Enter the ID of the customer you want to remove: ");
 
         ArrayList<customer> results = customerRepository.search("ID", searchTerm);
-
-        int value = noRecordsFound(results);
-        if (value == 0) return;
 
         for (customer c : results) {
             System.out.println("Customer to remove: " + c.toString());
@@ -133,15 +124,19 @@ public class searchBaseClass {
                 customerRepository.remove(c);
             }
         }
+
+        noRecordsFound(results);
     }
-    private static void viewRemovedCustomer(Repository<customer> customerRepository) {
-        ArrayList<customer> results = customerRepository.search("softDelete", null);
 
-        int value = noRecordsFound(results);
-        if (value == 0) return;
-
-        for (customer c : results)
-            System.out.println("Result: " + c.toString());
+    private static void viewRemovedCustomer(Repository<customer> customerRepository) throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
+//        ArrayList<customer> results = customerRepository.search("softDelete", null);
+//
+//        int value = noRecordsFound(results);
+//        if (value == 0) return;
+//
+//        for (customer c : results)
+//            System.out.println("Result: " + c.toString());
     }
 
     private static int noRecordsFound(ArrayList<customer> results){
@@ -149,7 +144,8 @@ public class searchBaseClass {
 
         if (resultsArraySize == 0) {
             System.out.println("No results found");;
-            }
+        }
+
         return resultsArraySize;
     }
 }

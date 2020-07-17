@@ -10,10 +10,14 @@ public class inMemoryCustomerRepository implements Repository<customer> {
     }
 
     @Override
-    public void add(customer c) { this.customers.add(c); }
+    public void add(customer c) {
+        this.customers.add(c);
+    }
 
     @Override
-    public void remove(customer c) { c.softDelete = true; }
+    public void remove(customer c) {
+        c.softDelete = true;
+    }
 
     @Override
     public ArrayList<customer> getAll() {
@@ -24,48 +28,41 @@ public class inMemoryCustomerRepository implements Repository<customer> {
     public ArrayList<customer> search(String criteria, String searchTerm) {
         ArrayList<customer> results = new ArrayList<>();
 
-        if (criteria == "displayAll") {
-            for (customer c : customers) {
-                if (c.softDelete == false)
-                    results.add(c);
-            }
+        for (customer c : customers) {
+            if (c.softDelete == true)
+                continue;
 
-        } else if (criteria == "name") {
-            for (customer c : customers){
-                if ((c.getName().contains(searchTerm)) && (c.softDelete==false))
-                    results.add(c);
-            }
+            if (criteria == "displayAll") {
+                results.add(c);
 
-        } else if (criteria == "ID") {
-            int searchTermInt = Integer.parseInt(searchTerm);
-            for (customer c : customers){
-                if ((c.getID() == searchTermInt) && (c.softDelete==false))
+            } else if (criteria == "name") {
+                if (c.getName().contains(searchTerm))
                     results.add(c);
-            }
 
-        } else if (criteria == "email") {
-            for (customer c : customers){
-                if ((c.getEmail().contains(searchTerm)) && (c.softDelete==false))
+            } else if (criteria == "ID") {
+                int searchTermInt = Integer.parseInt(searchTerm);
+                if (c.getID() == searchTermInt)
                     results.add(c);
-            }
 
-        } else if (criteria == "company") {
-            for (customer c : customers){
-                if ((c.getCompany().contains(searchTerm)) && (c.softDelete==false))
+            } else if (criteria == "email") {
+                if (c.getEmail().contains(searchTerm))
                     results.add(c);
-            }
 
-        } else if (criteria == "complete") {
-            for (customer c : customers){
-                if ((c.toString().contains(searchTerm)) && (c.softDelete==false))
+            } else if (criteria == "company") {
+                if (c.getCompany().contains(searchTerm))
                     results.add(c);
-            }
 
-        } else if (criteria == "softDelete") {
-            for (customer c : customers){
-                if (c.softDelete==true)
+            } else if (criteria == "complete") {
+                if (c.toString().contains(searchTerm))
                     results.add(c);
+
             }
+//        else if (criteria == "softDelete") {
+//            for (customer c : customers){
+//                if (c.softDelete==true)
+//                    results.add(c);
+//            }
+//        }
         }
         return results;
     }
